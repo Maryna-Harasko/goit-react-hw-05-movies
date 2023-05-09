@@ -7,6 +7,8 @@ import NotFound from "pages/NotFound";
 import Cast from "./Cast/Cast";
 import Reviews from "./Reviews/Reviews";
 import { SharedLayout } from "./SharedLayout/SharedLayout";
+import { getMoviesReviews } from "Services/fetch";
+
 
 const App = () => {
   return (
