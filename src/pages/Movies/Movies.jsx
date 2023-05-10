@@ -4,11 +4,13 @@ import { SearchForm } from "components/SearchForm/SearchForm";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getSearchByQuery } from "Services/fetch";
+import { Loader } from "components/Loader/Loader";
 
 const Movies = () =>{
   const [searchParams, setSearchParams]= useSearchParams();
   const [movies, setMovies] = useState(null)
   const query = searchParams.get('query');
+  const [isLoading, setLoading] = useState(false)
 
   const handleSubmit = (value) =>{
     setSearchParams({query: value.trim()})
@@ -16,8 +18,11 @@ const Movies = () =>{
 
   useEffect(() =>{
     if(query){
+      setLoading(true);
       getSearchByQuery(query)
       .then(res => setMovies(res.results))
+      .catch(error => {console.error(error.message)})
+      .finally(() => setLoading(false))
     }
   }, [query])
 
@@ -25,7 +30,10 @@ const Movies = () =>{
     <Section>
       <h2>Search Films</h2>
       <SearchForm onSubmit={handleSubmit}/>
-      <MoviesList movies={movies}/>
+      {isLoading ? (<Loader/>
+      ) : (
+        <MoviesList movies={movies}/>
+      )}
     </Section>
   )
 }

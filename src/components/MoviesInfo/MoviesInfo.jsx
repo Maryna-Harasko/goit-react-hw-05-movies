@@ -1,5 +1,6 @@
 import React from 'react';
 import { Section } from 'components/Section/Section';
+import PropTypes from 'prop-types';
 
 export const MoviesInfo = ({
   title,
@@ -25,4 +26,16 @@ export const MoviesInfo = ({
       <p>{genres && genres.map(genre => genre.name).join('  ')} </p>
     </Section>
   );
+};
+
+MoviesInfo.propTypes = {
+  title: PropTypes.string,
+  genres: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+    })),
+  vote_average: PropTypes.number,
+  overview: PropTypes.string,
+  poster_path: PropTypes.string,
+  release_date: PropTypes.string,
 };

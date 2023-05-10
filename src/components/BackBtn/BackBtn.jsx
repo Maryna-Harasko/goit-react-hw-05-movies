@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export const BackBtn = ({ path }) => {
   return(
@@ -6,3 +7,6 @@ export const BackBtn = ({ path }) => {
   )
 }
 
+BackBtn.propTypes = {
+  path: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+};

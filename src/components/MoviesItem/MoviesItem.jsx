@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export const MoviesItem = ({ id, title, poster_path}) =>{
   const location = useLocation();
@@ -15,3 +16,9 @@ export const MoviesItem = ({ id, title, poster_path}) =>{
     </li>
   )
 }
+
+MoviesItem.propTypes = {
+  title: PropTypes.string,
+  poster_path: PropTypes.string,
+  id: PropTypes.number.isRequired,
+};

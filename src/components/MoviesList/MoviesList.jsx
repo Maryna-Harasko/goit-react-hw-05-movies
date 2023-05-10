@@ -1,5 +1,6 @@
 import React from "react";
 import { MoviesItem } from "components/MoviesItem/MoviesItem";
+import PropTypes from 'prop-types';
 
 export const MoviesList = ({movies}) =>{
   return(
@@ -10,3 +11,11 @@ export const MoviesList = ({movies}) =>{
     </ul>
   )
 }
+
+MoviesList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    })
+  ),
+};

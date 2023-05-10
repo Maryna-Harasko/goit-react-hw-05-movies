@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 // import { FiSearch } from 'react-icons/fi';
+import PropTypes from 'prop-types';
 
 export const SearchForm = ({onSubmit}) => {
   const [searchText, setSearchText] = useState('');
@@ -45,3 +46,7 @@ export const SearchForm = ({onSubmit}) => {
     // </SearchForm>
   )
 }
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
