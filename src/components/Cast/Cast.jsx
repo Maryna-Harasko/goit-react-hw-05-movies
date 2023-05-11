@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMoviesCast } from 'Services/fetch';
+import { ActorsList } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -17,7 +18,7 @@ const Cast = () => {
   }, [movieId]);
 
   return (
-    <ul>
+    <ActorsList>
       {casts &&
         casts.map(({ id, name, character, profile_path }) => {
           return (
@@ -29,8 +30,8 @@ const Cast = () => {
                     : defaultImage
                 }
                 alt="name"
-                width="70"
-                height="100"
+                width="200"
+                height="300"
               />
               <div>
                 <p>
@@ -43,7 +44,7 @@ const Cast = () => {
             </li>
           );
         })}
-    </ul>
+    </ActorsList>
   );
 };
 

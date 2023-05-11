@@ -28,7 +28,6 @@ const Movies = () =>{
 
   return(
     <Section>
-      <h2>Search Films</h2>
       <SearchForm onSubmit={handleSubmit}/>
       {isLoading ? (<Loader/>
       ) : (

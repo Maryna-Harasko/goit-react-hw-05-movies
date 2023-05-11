@@ -1,6 +1,7 @@
 import React from 'react';
 import { Section } from 'components/Section/Section';
 import PropTypes from 'prop-types';
+import { InfoWrap, TextWrap } from './MoviesInfo.styled';
 
 export const MoviesInfo = ({
   title,
@@ -17,13 +18,17 @@ export const MoviesInfo = ({
 
   return (
     <Section>
-      <img src={IMAGES_BASE_URL + poster_path} alt="title" />
-      <h1>{title} {release_date && '('+ releaseDate +')'}</h1>
-      <h3>User Score: {vote_average && userScore}%</h3>
-      <h2>Overview</h2>
-      <p>{overview}</p>
-      <h2>Genres</h2>
-      <p>{genres && genres.map(genre => genre.name).join('  ')} </p>
+      <InfoWrap>
+        <img src={IMAGES_BASE_URL + poster_path} alt="title" width="240"/>
+        <TextWrap>
+          <h1>{title} {release_date && '('+ releaseDate +')'}</h1>
+          <h3>User Score: {vote_average && userScore}%</h3>
+          <h2>Overview</h2>
+          <p>{overview}</p>
+          <h2>Genres</h2>
+          <p>{genres && genres.map(genre => genre.name).join('  ')} </p>
+        </TextWrap>
+      </InfoWrap>
     </Section>
   );
 };

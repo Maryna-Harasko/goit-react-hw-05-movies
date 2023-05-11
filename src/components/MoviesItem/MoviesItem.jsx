@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { ItemMovies, ImgPoster, Title } from "./MoviesItem.styled";
 
 export const MoviesItem = ({ id, title, poster_path}) =>{
   const location = useLocation();
@@ -8,12 +9,12 @@ export const MoviesItem = ({ id, title, poster_path}) =>{
 
   const IMAGES_BASE_URL = 'https://image.tmdb.org/t/p/w200/'
   return(
-    <li>
+    <ItemMovies>
       <NavLink to={`${currentPage}/${id}`} state={{from: location}}>
-        <img src={IMAGES_BASE_URL + poster_path} alt={title} />
-        <h2>{title}</h2>
+        <ImgPoster src={IMAGES_BASE_URL + poster_path} alt={title} width="320"/>
+        <Title>{title}</Title>
       </NavLink>
-    </li>
+    </ItemMovies>
   )
 }
 

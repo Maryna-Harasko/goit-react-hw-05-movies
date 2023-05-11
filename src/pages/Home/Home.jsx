@@ -3,6 +3,7 @@ import { Section } from "components/Section/Section";
 import { getTrendingMovies } from "Services/fetch";
 import { MoviesList } from "components/MoviesList/MoviesList";
 import { Loader } from "components/Loader/Loader";
+import { Container } from "./Home.styled";
 
 
 const Home = () =>{
@@ -23,9 +24,10 @@ const Home = () =>{
   console.log(movies);
   return(
     <Section>
-      <h1>Trending movies today</h1>
-      {isLoading && <Loader/>}
-        <MoviesList movies ={movies}/>
+      <Container>
+        {isLoading && <Loader/>}
+          <MoviesList movies ={movies}/>
+      </Container>  
     </Section>
   )
 }

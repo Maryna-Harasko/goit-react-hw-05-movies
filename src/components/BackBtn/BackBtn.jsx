@@ -1,9 +1,13 @@
-import { NavLink } from "react-router-dom";
 import PropTypes from 'prop-types';
+import { FiArrowLeft } from "react-icons/fi";
+import { BackLink } from './BackBtn.styled';
 
 export const BackBtn = ({ path }) => {
   return(
-    <NavLink to = {path}>go back</NavLink>
+    <BackLink to = {path}>
+      <FiArrowLeft style={{ width: 30, height: 30 }} />
+      <span>go back</span>
+    </BackLink>
   )
 }
 

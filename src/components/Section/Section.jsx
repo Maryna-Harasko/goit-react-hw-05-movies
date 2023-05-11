@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import { SectionEl, Container } from "./Section.styled";
 
 export const Section = ({children}) =>{
   return(
-    <section>
-      <div>{children}</div>
-    </section>
+    <SectionEl>
+      <Container>{children}</Container>
+    </SectionEl>
   )
 }
 

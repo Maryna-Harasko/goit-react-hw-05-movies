@@ -1,10 +1,11 @@
 import React, { Suspense, useEffect, useState } from "react";
-import { Outlet, NavLink, useParams, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useParams, useLocation, useNavigate } from "react-router-dom";
 import { Section } from "components/Section/Section";
 import { MoviesInfo } from "components/MoviesInfo/MoviesInfo";
 import { BackBtn } from "components/BackBtn/BackBtn";
 import { getMoviesByID } from "Services/fetch"; 
 import { Loader } from "components/Loader/Loader";
+import { ContainerDetails, ListPage, InfoPageLink } from "./MovieDetails.styled";
 
 const MovieDetails = () =>{
   const {movieId} = useParams();
@@ -28,28 +29,31 @@ const MovieDetails = () =>{
 
   return(
     <Section>
-      <BackBtn path={path}/>
-      {isLoading ? (<Loader/>
-      ) : (
-        <div>
-          { isSuccess && 
+      <ContainerDetails>
+        <BackBtn path={path}/>
+        {isLoading ? (<Loader/>
+        ) : (
           <>
-          <MoviesInfo {...movieInfo}/>
-          <ul>
-            <li>
-              <NavLink to="cast">Read about actors</NavLink>
-            </li>
-            <li>
-              <NavLink to="reviews">Reviews about movies</NavLink>
-            </li>
-          </ul>
+            { isSuccess && 
+            <>
+            <MoviesInfo {...movieInfo}/>
+            <h3>Additional information</h3>
+            <ListPage>
+              <li>
+                <InfoPageLink to="cast">Cast</InfoPageLink>
+              </li>
+              <li>
+                <InfoPageLink to="reviews">Reviews</InfoPageLink>
+              </li>
+            </ListPage>
+            </>
+            }
+            <Suspense fallback={<Loader/>}>
+              <Outlet />
+            </Suspense>
           </>
-          }
-          <Suspense fallback={<Loader/>}>
-            <Outlet />
-          </Suspense>
-        </div>
-      )}
+        )}
+      </ContainerDetails>
     </Section>
   )
 }
