@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useRef } from "react";
 import { Outlet, useParams, useLocation, useNavigate } from "react-router-dom";
 import { Section } from "components/Section/Section";
 import { MoviesInfo } from "components/MoviesInfo/MoviesInfo";
@@ -8,13 +8,16 @@ import { Loader } from "components/Loader/Loader";
 import { ContainerDetails, ListPage, InfoPageLink } from "./MovieDetails.styled";
 
 const MovieDetails = () =>{
-  const {movieId} = useParams();
   const [movieInfo, setMovieInfo] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [isSuccess, setSuccess] = useState(false);
+  
+  const {
+    current: { movieId },
+  } = useRef(useParams('movieId'));
 
   const location = useLocation();
-  const path = location?.state?.from ?? '/';
+  const path = useRef(location.state?.from ?? '/');
   const navigate = useNavigate();
  
   useEffect(() =>{
@@ -30,7 +33,7 @@ const MovieDetails = () =>{
   return(
     <Section>
       <ContainerDetails>
-        <BackBtn path={path}/>
+        <BackBtn path={path.current}/>
         {isLoading ? (<Loader/>
         ) : (
           <>
